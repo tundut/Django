@@ -1,0 +1,46 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Color Mixing Tool</title>
+    <link rel="stylesheet" href="{% static 'css/register.css' %}" />
+  </head>
+  <body style="background: #949494">
+    <div class="box">
+      <div class="form">
+        <h2>REGISTER</h2>
+        <form method="POST">
+          {% csrf_token %}
+          <div class="inputbox">
+            <input
+              type="text"
+              name="email"
+              required
+            />
+            <span>Gmail</span>
+            <i></i>
+          </div>
+          <div class="inputbox">
+            <input type="text" name="username" required="required" />
+            <span>Username</span>
+            <i></i>
+          </div>
+          <div class="inputbox">
+            <input type="password" name="password" required="required" />
+            <span>Password</span>
+            <i></i>
+          </div>
+          <div class="inputbox">
+            <input type="password" name="confirm-password" required="required" />
+            <span>Confirm password</span>
+            <i></i>
+          </div>
+          <input type="submit" value="Register" />
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

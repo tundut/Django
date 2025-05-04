@@ -1,0 +1,32 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Color Mixing Tool</title>
+    <link rel="stylesheet" href="{% static 'css/login.css' %}" />
+  </head>
+  <body style="background: #949494">
+    <div class="box">
+      <div class="form">
+        <h2>SIGN IN</h2>
+        <form method="POST">
+          {% csrf_token %}
+          <div class="inputbox">
+            <input type="text" name="username" required="required" />
+            <span>Username</span>
+            <i></i>
+          </div>
+          <div class="inputbox">
+            <input type="password" name="password" required="required" />
+            <span>Password</span>
+            <i></i>
+          </div>
+          <input type="submit" value="Login" />
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
