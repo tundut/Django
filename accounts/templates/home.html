@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% load static %}
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'css/accountSuccess.css' %}" />
+    <title>Home</title>
+  </head>
+  <body>
+    <div class="navbar">
+      <div class="logo-area">
+        <img
+          src="{% static 'images/Honda-logo-1 (1).png' %}"
+          alt="Honda Logo"
+          class="logo"
+        />
+      </div>
+      <ul class="nav-menu">
+        <li>
+          <span class="menu-title">NEW</span><br /><a href="#">NEW HONDA</a>
+        </li>
+        <li>
+          <span class="menu-title">PRODUCTS</span><br /><a href="#">SẢN PHẨM</a>
+        </li>
+        <li>
+          <span class="menu-title">TRẢI NGHIỆM</span><br /><a href="#"
+            >DỊCH VỤ</a
+          >
+        </li>
+        <li>
+          <span class="menu-title">THÔNG TIN</span><br /><a href="#">SỰ KIỆN</a>
+        </li>
+        <li>
+          <span class="menu-title">LIÊN HỆ</span><br /><a href="#">TIN TỨC</a>
+        </li>
+      </ul>
+      <div class="nav-act">
+        {% if user.is_authenticated %}
+        <div class="success-account">
+          <span class="username">{{ user.username }}</span>
+          <img src="{% static 'images/avatar.png' %}" alt="User Avatar" />
+          <form method="POST" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button type="submit" class="logout-nav-btn">Logout</button>
+          </form>
+        </div>
+        {% else %}
+        <ul class="nav-list">
+          <li><a href="{% url 'register' %}" class="register">REGISTER</a></li>
+          <li><a href="{% url 'login' %}" class="login">LOGIN</a></li>
+        </ul>
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- DASHBOARD SECTION -->
+    <div class="dashboard">
+      <div class="form">
+        <div class="form-content">
+          <h1>Welcome to HONDA CIVIC</h1>
+          <div class="img-pr">
+            <img src="{% static 'images/honda2.png' %}" alt="honda car" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

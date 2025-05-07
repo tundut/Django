@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    {% load static %}
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'css/admin.css' %}" />
+    <title>Manage Accounts</title>
+  </head>
+  <body>
+    <div class="navbar">
+      <div class="navbar-left">
+        <img
+          src="{% static 'images/Honda-logo-1 (1).png' %}"
+          class="logo"
+          alt="Honda Logo"
+        />
+        <span class="title">Manage Accounts</span>
+      </div>
+      <div class="navbar-right">
+        <span class="username">{{ user.username }}</span>
+        <img src="https://i.pravatar.cc/36?img=3" class="avatar" alt="Avatar" />
+        <form method="POST" action="{% url 'logout' %}">
+          {% csrf_token %}
+          <button type="submit" class="logout-nav-btn">Logout</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="container">
+      <h2>Danh sách tài khoản người dùng</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>STT</th>
+            <th>Tên người dùng</th>
+            <th>Email</th>
+            <th>Vai trò</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for user in users %}
+          <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ user.username }}</td>
+            <td>{{ user.email }}</td>
+            <td>
+              {% if user.is_superuser %}
+                Quản trị viên
+              {% elif user.is_staff %}
+                Nhân viên
+              {% else %}
+                Người dùng
+              {% endif %}
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>

@@ -7,19 +7,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Color Mixing Tool</title>
     <link rel="stylesheet" href="{% static 'css/register.css' %}" />
+    <style>
+      .messages {
+        list-style: none;
+        padding: 10px;
+      }
+      .messages li {
+        padding: 10px;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        font-weight: bold;
+      }
+      .success {
+        background-color: #d4edda;
+        color: #155724;
+      }
+      .error {
+        background-color: #f8d7da;
+        color: #721c24;
+      }
+    </style>
   </head>
   <body style="background: #949494">
+    {% if messages %}
+    <ul class="messages">
+      {% for message in messages %}
+      <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>
+        {{ message }}
+      </li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+
     <div class="box">
       <div class="form">
         <h2>REGISTER</h2>
         <form method="POST">
           {% csrf_token %}
           <div class="inputbox">
-            <input
-              type="text"
-              name="email"
-              required
-            />
+            <input type="text" name="email" required />
             <span>Gmail</span>
             <i></i>
           </div>
@@ -34,7 +60,11 @@
             <i></i>
           </div>
           <div class="inputbox">
-            <input type="password" name="confirm-password" required="required" />
+            <input
+              type="password"
+              name="confirm-password"
+              required="required"
+            />
             <span>Confirm password</span>
             <i></i>
           </div>
